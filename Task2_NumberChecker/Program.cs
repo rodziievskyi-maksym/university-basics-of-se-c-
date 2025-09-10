@@ -1,6 +1,6 @@
 ﻿namespace Task2_NumberChecker
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main()
         {
