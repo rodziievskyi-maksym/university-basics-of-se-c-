@@ -9,119 +9,117 @@ namespace Task2_NumberChecker
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.InputEncoding = System.Text.Encoding.UTF8;
             
-            Console.WriteLine("=== ПРОГРАМА ПЕРЕВІРКИ ЧИСЕЛ ===\n");
+            Console.WriteLine("=== NUMBER CHECKER PROGRAM ===\n");
             
             try
             {
-                // Запит першого числа
-                Console.Write("Введіть перше ціле число: ");
+                Console.Write("Enter the first integer: ");
                 if (!int.TryParse(Console.ReadLine(), out int firstNumber))
                 {
-                    Console.WriteLine("Помилка: Введіть коректне ціле число!");
+                    Console.WriteLine("Error: Enter a valid integer!");
                     return;
                 }
                 
-                // Перевірка парності/непарності
-                Console.WriteLine($"\n--- Аналіз числа {firstNumber} ---");
+                Console.WriteLine($"\n--- Analysis of number {firstNumber} ---");
                 
                 if (IsEven(firstNumber))
                 {
-                    Console.WriteLine($"Число {firstNumber} є ПАРНИМ.");
+                    Console.WriteLine($"Number {firstNumber} is EVEN.");
                 }
                 else
                 {
-                    Console.WriteLine($"Число {firstNumber} є НЕПАРНИМ.");
+                    Console.WriteLine($"Number {firstNumber} is ODD.");
                 }
                 
-                // Перевірка подільності на 4
+                // Check divisibility by 4
                 if (firstNumber % 4 == 0)
                 {
-                    Console.WriteLine($"Число {firstNumber} ДІЛИТЬСЯ на 4.");
+                    Console.WriteLine($"Number {firstNumber} IS DIVISIBLE by 4.");
                 }
                 else
                 {
-                    Console.WriteLine($"Число {firstNumber} НЕ ДІЛИТЬСЯ на 4.");
+                    Console.WriteLine($"Number {firstNumber} is NOT DIVISIBLE by 4.");
                 }
                 
-                // Запит другого числа
-                Console.Write("\nВведіть друге ціле число: ");
+                // Request second number
+                Console.Write("\nEnter the second integer: ");
                 if (!int.TryParse(Console.ReadLine(), out int secondNumber))
                 {
-                    Console.WriteLine("Помилка: Введіть коректне ціле число!");
+                    Console.WriteLine("Error: Enter a valid integer!");
                     return;
                 }
                 
-                // Перевірка подільності між числами
-                Console.WriteLine($"\n--- Аналіз подільності між {firstNumber} та {secondNumber} ---");
+                // Check divisibility between numbers
+                Console.WriteLine($"\n--- Divisibility analysis between {firstNumber} and {secondNumber} ---");
                 
                 bool firstDividesSecond = false;
                 bool secondDividesFirst = false;
                 
-                // Перевірка, чи перше ділиться на друге
+                // Check if the first number divides by the second
                 if (secondNumber != 0 && firstNumber % secondNumber == 0)
                 {
                     firstDividesSecond = true;
-                    Console.WriteLine($"Число {firstNumber} ДІЛИТЬСЯ на {secondNumber}.");
-                    Console.WriteLine($"Результат ділення: {firstNumber} ÷ {secondNumber} = {firstNumber / secondNumber}");
+                    Console.WriteLine($"Number {firstNumber} IS DIVISIBLE by {secondNumber}.");
+                    Console.WriteLine($"Division result: {firstNumber} ÷ {secondNumber} = {firstNumber / secondNumber}");
                 }
                 
-                // Перевірка, чи друге ділиться на перше
+                // Check if the second number divides by the first
                 if (firstNumber != 0 && secondNumber % firstNumber == 0)
                 {
                     secondDividesFirst = true;
-                    Console.WriteLine($"Число {secondNumber} ДІЛИТЬСЯ на {firstNumber}.");
-                    Console.WriteLine($"Результат ділення: {secondNumber} ÷ {firstNumber} = {secondNumber / firstNumber}");
+                    Console.WriteLine($"Number {secondNumber} IS DIVISIBLE by {firstNumber}.");
+                    Console.WriteLine($"Division result: {secondNumber} ÷ {firstNumber} = {secondNumber / firstNumber}");
                 }
                 
-                // Якщо жодне не ділиться на інше
+                // If neither divides by the other
                 if (!firstDividesSecond && !secondDividesFirst)
                 {
                     if (firstNumber == 0 && secondNumber == 0)
                     {
-                        Console.WriteLine("Обидва числа дорівнюють нулю. Ділення неможливе.");
+                        Console.WriteLine("Both numbers equal zero. Division is impossible.");
                     }
                     else if (firstNumber == 0)
                     {
-                        Console.WriteLine($"Число {firstNumber} дорівнює нулю, тому ділення {secondNumber} на {firstNumber} неможливе.");
-                        Console.WriteLine($"Але {firstNumber} ділиться на {secondNumber} (результат: 0).");
+                        Console.WriteLine($"Number {firstNumber} equals zero, so division of {secondNumber} by {firstNumber} is impossible.");
+                        Console.WriteLine($"But {firstNumber} is divisible by {secondNumber} (result: 0).");
                     }
                     else if (secondNumber == 0)
                     {
-                        Console.WriteLine($"Число {secondNumber} дорівнює нулю, тому ділення {firstNumber} на {secondNumber} неможливе.");
-                        Console.WriteLine($"Але {secondNumber} ділиться на {firstNumber} (результат: 0).");
+                        Console.WriteLine($"Number {secondNumber} equals zero, so division of {firstNumber} by {secondNumber} is impossible.");
+                        Console.WriteLine($"But {secondNumber} is divisible by {firstNumber} (result: 0).");
                     }
                     else
                     {
-                        Console.WriteLine($"Жодне з чисел не ділиться нацело на інше:");
+                        Console.WriteLine($"Neither number divides evenly by the other:");
                         Console.WriteLine($"  {firstNumber} ÷ {secondNumber} = {(double)firstNumber / secondNumber:F2}");
                         Console.WriteLine($"  {secondNumber} ÷ {firstNumber} = {(double)secondNumber / firstNumber:F2}");
                     }
                 }
                 
-                // Додаткова інформація про обидва числа
-                Console.WriteLine($"\n--- Додаткова інформація ---");
-                Console.WriteLine($"Перше число ({firstNumber}): {(IsEven(firstNumber) ? "парне" : "непарне")}");
-                Console.WriteLine($"Друге число ({secondNumber}): {(IsEven(secondNumber) ? "парне" : "непарне")}");
+                // Additional information about both numbers
+                Console.WriteLine($"\n--- Additional Information ---");
+                Console.WriteLine($"First number ({firstNumber}): {(IsEven(firstNumber) ? "even" : "odd")}");
+                Console.WriteLine($"Second number ({secondNumber}): {(IsEven(secondNumber) ? "even" : "odd")}");
                 
                 if (Math.Abs(firstNumber) == Math.Abs(secondNumber))
                 {
-                    Console.WriteLine("Числа є рівними за абсолютною величиною.");
+                    Console.WriteLine("The numbers are equal in absolute value.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Виникла непередбачена помилка: {ex.Message}");
+                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
             }
             
-            Console.WriteLine("\nНатисніть будь-яку клавішу для завершення програми...");
+            Console.WriteLine("\nPress any key to exit the program...");
             Console.ReadKey();
         }
         
         /// <summary>
-        /// Метод для перевірки, чи є число парним
+        /// Method to check if a number is even
         /// </summary>
-        /// <param name="number">Число для перевірки</param>
-        /// <returns>true, якщо число парне; false, якщо непарне</returns>
+        /// <param name="number">Number to check</param>
+        /// <returns>true if the number is even; false if odd</returns>
         static bool IsEven(int number)
         {
             return number % 2 == 0;
